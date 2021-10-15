@@ -15,13 +15,19 @@ final class FlowsContainer {
                                                         featureFactory: rootFlowScreenFactory))
     }
 
-    private var common: CommonContainer
-    private var shared: SharedContainer
-    private var screens: ScreensContainer
+    private let common: CommonContainer
+    private let shared: SharedContainer
+    private let services: ServicesContainer
+    private let screens: ScreensContainer
 
-    init(common: CommonContainer, shared: SharedContainer, screens: ScreensContainer) {
+    init(common: CommonContainer,
+         shared: SharedContainer,
+         services: ServicesContainer,
+         screens: ScreensContainer) {
+
         self.common = common
         self.shared = shared
+        self.services = services
         self.screens = screens
     }
 }

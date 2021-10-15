@@ -7,7 +7,7 @@ public final class SearchShowUseCase {
 
     private let repository: ShowRepository
 
-    public init(repository: ShowRepository) {
+    init(repository: ShowRepository) {
         self.repository = repository
     }
 

@@ -14,7 +14,7 @@ final class SharedContainer {
             languageCodeProvider: self.common.languageCodeProvider.value)
     }
 
-    private var common: CommonContainer
+    private let common: CommonContainer
 
     init(common: CommonContainer) {
         self.common = common

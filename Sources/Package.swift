@@ -93,7 +93,7 @@ let package = Package(
             name: "ShowDetailsScreen",
             dependencies: [
                 "ObjectLifetime",
-                "API",
+                "ShowService",
                 "ShowDetailsScene",
             ],
             path: "Screens/ShowDetailsScreen"),
@@ -138,6 +138,7 @@ let package = Package(
         .target(
             name: "ShowService",
             dependencies: [
+                "ObjectLifetime",
                 "Promises",
                 "API",
             ],

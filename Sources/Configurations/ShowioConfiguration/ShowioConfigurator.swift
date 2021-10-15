@@ -6,8 +6,9 @@ public final class ShowioConfigurator {
     public func configure() -> RootFlowCoordinator {
         let common = CommonContainer()
         let shared = SharedContainer(common: common)
-        let screens = ScreensContainer(common: common, shared: shared)
-        let flows = FlowsContainer(common: common, shared: shared, screens: screens)
+        let services = ServicesContainer(common: common, shared: shared)
+        let screens = ScreensContainer(common: common, shared: shared, services: services)
+        let flows = FlowsContainer(common: common, shared: shared, services: services, screens: screens)
 
         return flows.rootFlowConfigurator.value.configure()
     }

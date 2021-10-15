@@ -3,7 +3,7 @@ import Promises
 public final class TrendingShowsUseCase {
     private let repository: ShowRepository
 
-    public init(repository: ShowRepository) {
+    init(repository: ShowRepository) {
         self.repository = repository
     }
 

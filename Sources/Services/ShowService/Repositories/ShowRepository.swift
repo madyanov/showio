@@ -2,13 +2,13 @@ import Foundation
 import Promises
 import API
 
-public final class ShowRepository {
+final class ShowRepository {
     private var cachedConfiguration: ConfigurationResponse?
     private var cachedTrendingShows: [Show]?
 
     private let api: API
 
-    public init(api: API) {
+    init(api: API) {
         self.api = api
     }
 

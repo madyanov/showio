@@ -7,6 +7,10 @@ public final class WeakFactory<Type> {
     public init(_ factory: @escaping () -> Type) {
         self.factory = factory
     }
+
+    public func callAsFunction<NewType>(_ cast: @escaping (Type) -> NewType) -> WeakFactory<NewType> {
+        return WeakFactory<NewType> { cast(self.value) }
+    }
 }
 
 private extension WeakFactory {

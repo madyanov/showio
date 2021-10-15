@@ -4,7 +4,7 @@ import ShowDetailsScreen
 
 final class ScreensContainer {
     lazy var showSearchScreenConfigurator = WeakFactory<ShowSearchScreenConfigurator> {
-        let urlRouter = WeakFactory { self.common.urlRouter.value as ShowSearchURLRouter }
+        let urlRouter = self.common.urlRouter { $0 as ShowSearchURLRouter }
 
         let trendingShowsUseCase = self.services.showService.trendingShowsUseCase
         let searchQueryFilterUseCase = self.services.showService.searchQueryFilterUseCase

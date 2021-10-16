@@ -45,7 +45,7 @@ let package = Package(
         .library(name: "Localization", targets: ["Localization"]),
         .library(name: "PropertyLists", targets: ["PropertyLists"]),
         .library(name: "URLRouter", targets: ["URLRouter"]),
-        .library(name: "ObjectLifetime", targets: ["ObjectLifetime"]),
+        .library(name: "DI", targets: ["DI"]),
 
         // MARK: Executables
         .executable(name: "genstrings", targets: ["Genstrings"]),
@@ -57,7 +57,7 @@ let package = Package(
         .target(
             name: "ShowioConfiguration",
             dependencies: [
-                "ObjectLifetime",
+                "DI",
                 "PropertyLists",
                 "URLRouter",
                 "Styling",
@@ -72,7 +72,7 @@ let package = Package(
         // MARK: Flows
         .target(name: "RootFlow",
                 dependencies: [
-                    "ObjectLifetime",
+                    "DI",
                     "ShowDetailsTransition",
                 ],
                 path: "Flows/RootFlow"),
@@ -81,7 +81,7 @@ let package = Package(
         .target(
             name: "ShowSearchScreen",
             dependencies: [
-                "ObjectLifetime",
+                "DI",
                 "Promises",
                 "Styling",
                 "ShowCollectionScene",
@@ -92,7 +92,7 @@ let package = Package(
         .target(
             name: "ShowDetailsScreen",
             dependencies: [
-                "ObjectLifetime",
+                "DI",
                 "ShowService",
                 "ShowDetailsScene",
             ],
@@ -138,7 +138,7 @@ let package = Package(
         .target(
             name: "ShowService",
             dependencies: [
-                "ObjectLifetime",
+                "DI",
                 "Promises",
                 "API",
             ],
@@ -184,7 +184,7 @@ let package = Package(
         .target(name: "Localization", path: "Common/Localization"),
         .target(name: "PropertyLists", path: "Common/PropertyLists"),
         .target(name: "URLRouter", path: "Common/URLRouter"),
-        .target(name: "ObjectLifetime", path: "Common/ObjectLifetime"),
+        .target(name: "DI", path: "Common/DI"),
 
         // MARK: Executables
         .executableTarget(name: "Genstrings", path: "Executables/Genstrings"),

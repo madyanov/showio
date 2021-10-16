@@ -1,5 +1,5 @@
 import UIKit
-import ObjectLifetime
+import DI
 import Localization
 import URLRouter
 

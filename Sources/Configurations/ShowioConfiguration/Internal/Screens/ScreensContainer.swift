@@ -1,4 +1,4 @@
-import ObjectLifetime
+import DI
 import ShowSearchScreen
 import ShowDetailsScreen
 

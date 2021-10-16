@@ -1,5 +1,5 @@
 import Foundation
-import ObjectLifetime
+import DI
 import PropertyLists
 import Styling
 import API

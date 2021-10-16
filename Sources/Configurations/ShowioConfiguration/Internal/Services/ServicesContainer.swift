@@ -1,4 +1,4 @@
-import ObjectLifetime
+import DI
 import ShowService
 
 final class ServicesContainer {

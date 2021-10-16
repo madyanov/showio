@@ -1,5 +1,5 @@
 import UIKit
-import ObjectLifetime
+import DI
 
 public struct RootFlowDependencies {
     let navigationController: WeakFactory<UINavigationController>

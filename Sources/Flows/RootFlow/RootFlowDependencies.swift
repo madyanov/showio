@@ -2,11 +2,11 @@ import UIKit
 import DI
 
 public struct RootFlowDependencies {
-    let navigationController: WeakFactory<UINavigationController>
-    let featureFactory: WeakFactory<RootFlowScreenFactory>
+    let navigationController: WeakLazy<UINavigationController>
+    let featureFactory: WeakLazy<RootFlowScreenFactory>
 
-    public init(navigationController: WeakFactory<UINavigationController>,
-                featureFactory: WeakFactory<RootFlowScreenFactory>) {
+    public init(navigationController: WeakLazy<UINavigationController>,
+                featureFactory: WeakLazy<RootFlowScreenFactory>) {
 
         self.navigationController = navigationController
         self.featureFactory = featureFactory

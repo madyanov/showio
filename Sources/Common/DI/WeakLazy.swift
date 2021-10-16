@@ -1,4 +1,4 @@
-public final class WeakFactory<Type> {
+public final class WeakLazy<Type> {
     public var value: Type { (object as? Type) ?? create() }
 
     private weak var object: AnyObject?
@@ -8,12 +8,12 @@ public final class WeakFactory<Type> {
         self.factory = factory
     }
 
-    public func callAsFunction<NewType>(_ cast: @escaping (Type) -> NewType) -> WeakFactory<NewType> {
-        return WeakFactory<NewType> { cast(self.value) }
+    public func callAsFunction<NewType>(_ cast: @escaping (Type) -> NewType) -> WeakLazy<NewType> {
+        return WeakLazy<NewType> { cast(self.value) }
     }
 }
 
-private extension WeakFactory {
+private extension WeakLazy {
     func create() -> Type {
         let object = factory()
         self.object = object as AnyObject

@@ -2,8 +2,8 @@ import DI
 import RootFlow
 
 final class FlowsContainer {
-    lazy var rootFlowConfigurator = WeakFactory<RootFlowConfigurator> {
-        let rootFlowScreenFactory = WeakFactory<RootFlow.RootFlowScreenFactory> {
+    lazy var rootFlowConfigurator = WeakLazy<RootFlowConfigurator> {
+        let rootFlowScreenFactory = WeakLazy<RootFlow.RootFlowScreenFactory> {
             let showSearchScreenConfigurator = self.screens.showSearchScreenConfigurator.value
             let showDetailsScreenConfigurator = self.screens.showDetailsScreenConfigurator.value
 

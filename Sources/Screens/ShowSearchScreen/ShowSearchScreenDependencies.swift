@@ -2,16 +2,16 @@ import DI
 import ShowService
 
 public struct ShowSearchScreenDependencies {
-    let urlRouter: WeakFactory<ShowSearchURLRouter>
+    let urlRouter: WeakLazy<ShowSearchURLRouter>
 
-    let trendingShowsUseCase: WeakFactory<TrendingShowsUseCase>
-    let searchQueryFilterUseCase: WeakFactory<SearchQueryFilterUseCase>
-    let searchShowUseCase: WeakFactory<SearchShowUseCase>
+    let trendingShowsUseCase: WeakLazy<TrendingShowsUseCase>
+    let searchQueryFilterUseCase: WeakLazy<SearchQueryFilterUseCase>
+    let searchShowUseCase: WeakLazy<SearchShowUseCase>
 
-    public init(urlRouter: WeakFactory<ShowSearchURLRouter>,
-                trendingShowsUseCase: WeakFactory<TrendingShowsUseCase>,
-                searchQueryFilterUseCase: WeakFactory<SearchQueryFilterUseCase>,
-                searchShowUseCase: WeakFactory<SearchShowUseCase>) {
+    public init(urlRouter: WeakLazy<ShowSearchURLRouter>,
+                trendingShowsUseCase: WeakLazy<TrendingShowsUseCase>,
+                searchQueryFilterUseCase: WeakLazy<SearchQueryFilterUseCase>,
+                searchShowUseCase: WeakLazy<SearchShowUseCase>) {
 
         self.urlRouter = urlRouter
         self.trendingShowsUseCase = trendingShowsUseCase

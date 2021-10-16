@@ -3,7 +3,7 @@ import ShowSearchScreen
 import ShowDetailsScreen
 
 final class ScreensContainer {
-    lazy var showSearchScreenConfigurator = WeakFactory<ShowSearchScreenConfigurator> {
+    lazy var showSearchScreenConfigurator = WeakLazy<ShowSearchScreenConfigurator> {
         let urlRouter = self.common.urlRouter { $0 as ShowSearchURLRouter }
 
         let trendingShowsUseCase = self.services.showService.trendingShowsUseCase
@@ -18,7 +18,7 @@ final class ScreensContainer {
         return ShowSearchScreenConfigurator(dependencies: dependencies)
     }
 
-    lazy var showDetailsScreenConfigurator = WeakFactory {
+    lazy var showDetailsScreenConfigurator = WeakLazy {
         ShowDetailsScreenConfigurator(dependencies: .init())
     }
 

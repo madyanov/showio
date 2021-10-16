@@ -4,7 +4,7 @@ import Localization
 import URLRouter
 
 final class CommonContainer {
-    lazy var navigationController = WeakFactory<UINavigationController> { DefaultNavigationController() }
-    lazy var languageCodeProvider = WeakFactory { LanguageCodeProvider() }
-    lazy var urlRouter = WeakFactory { URLRouter() }
+    lazy var navigationController = WeakLazy<UINavigationController> { DefaultNavigationController() }
+    lazy var languageCodeProvider = WeakLazy { LanguageCodeProvider() }
+    lazy var urlRouter = WeakLazy { URLRouter() }
 }

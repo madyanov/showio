@@ -1,5 +1,5 @@
 import CoreGraphics
 
 extension CGFloat {
-    public static let defaultSpacing: CGFloat = 8
+    public static let standardSpacing: CGFloat = 8
 }

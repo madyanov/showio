@@ -24,22 +24,22 @@ final class ShowCollectionViewCell: UICollectionViewCell {
         remoteImageView.backgroundColor = .clear
         remoteImageView.contentMode = .scaleAspectFill
         remoteImageView.layer.masksToBounds = true
-        remoteImageView.layer.cornerRadius = .defaultSpacing
+        remoteImageView.layer.cornerRadius = .standardSpacing
         return remoteImageView
     }()
 
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = .defaultSpacing
+        stackView.spacing = .standardSpacing
         return stackView
     }()
 
     private lazy var posterContainerView: UIView = {
         let view = UIView()
         view.layer.shadowOpacity = 0.2
-        view.layer.shadowRadius = .defaultSpacing
-        view.layer.shadowOffset = CGSize(width: 0, height: .defaultSpacing / 2)
+        view.layer.shadowRadius = .standardSpacing
+        view.layer.shadowOffset = CGSize(width: 0, height: .standardSpacing / 2)
         return view
     }()
 
@@ -48,7 +48,7 @@ final class ShowCollectionViewCell: UICollectionViewCell {
         imageView.isHidden = true
         imageView.contentMode = .center
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = .defaultSpacing
+        imageView.layer.cornerRadius = .standardSpacing
         return imageView
     }()
 
@@ -61,7 +61,7 @@ final class ShowCollectionViewCell: UICollectionViewCell {
     private lazy var footerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = .defaultSpacing
+        stackView.spacing = .standardSpacing
         return stackView
     }()
 
@@ -82,12 +82,12 @@ final class ShowCollectionViewCell: UICollectionViewCell {
         button.isUserInteractionEnabled = false
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .red.withAlphaComponent(0.9)
-        button.layer.cornerRadius = .defaultSpacing
+        button.layer.cornerRadius = .standardSpacing
 
-        button.contentEdgeInsets = UIEdgeInsets(top: .defaultSpacing / 2,
-                                                left: .defaultSpacing * 0.75,
-                                                bottom: .defaultSpacing / 2,
-                                                right: .defaultSpacing * 0.75)
+        button.contentEdgeInsets = UIEdgeInsets(top: .standardSpacing / 2,
+                                                left: .standardSpacing * 0.75,
+                                                bottom: .standardSpacing / 2,
+                                                right: .standardSpacing * 0.75)
         return button
     }()
 
@@ -130,9 +130,9 @@ final class ShowCollectionViewCell: UICollectionViewCell {
             posterImageView.heightAnchor.constraint(equalTo: posterImageView.widthAnchor, multiplier: 1.5),
 
             numberOfNewEpisodesBadge.topAnchor.constraint(equalTo: posterImageView.topAnchor,
-                                                          constant: .defaultSpacing),
+                                                          constant: .standardSpacing),
             numberOfNewEpisodesBadge.trailingAnchor.constraint(equalTo: posterImageView.trailingAnchor,
-                                                               constant: -.defaultSpacing),
+                                                               constant: -.standardSpacing),
         ])
 
         updateUI()

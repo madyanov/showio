@@ -67,7 +67,7 @@ public final class ShowCollectionView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
 
-        let spacing: CGFloat = style == .minimal ? .defaultSpacing * 2 : .defaultSpacing * 3
+        let spacing: CGFloat = style == .minimal ? .standardSpacing * 2 : .standardSpacing * 3
         collectionViewLayout.minimumInteritemSpacing = spacing
         collectionViewLayout.minimumLineSpacing = spacing
 

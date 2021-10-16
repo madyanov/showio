@@ -11,7 +11,7 @@ extension ViewShader {
     public func addShadow() {
         guard let view = viewWithShadow else { return }
 
-        view.layer.shadowRadius = .defaultSpacing * 2
+        view.layer.shadowRadius = .standardSpacing * 2
         view.layer.shadowOffset = .zero
         view.layer.shadowOpacity = 0.3
         view.layer.masksToBounds = false

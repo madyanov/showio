@@ -5,10 +5,10 @@ public final class ShowTransitionAnimator: NSObject {
 
     public var maximumRegularWidth: CGFloat = 700
 
-    public var minimumInsets = UIEdgeInsets(top: .defaultSpacing * 2,
-                                            left: .defaultSpacing * 10,
+    public var minimumInsets = UIEdgeInsets(top: .standardSpacing * 2,
+                                            left: .standardSpacing * 10,
                                             bottom: 0,
-                                            right: .defaultSpacing * 10)
+                                            right: .standardSpacing * 10)
 
     private var isPresentation = false
 }

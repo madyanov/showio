@@ -1,5 +1,4 @@
 import UIKit
-import API
 
 public final class ShowDetailsScreenConfigurator {
     private let dependencies: ShowDetailsScreenDependencies

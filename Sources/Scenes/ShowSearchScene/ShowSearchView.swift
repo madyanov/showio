@@ -64,14 +64,14 @@ public final class ShowSearchView: UIView {
 
         NSLayoutConstraint.activate([
             activityIndicatorView.topAnchor.constraint(greaterThanOrEqualTo: poweredByLabel.bottomAnchor,
-                                                       constant: .defaultSpacing * 4),
+                                                       constant: .standardSpacing * 4),
         ], priority: .defaultHigh)
 
         NSLayoutConstraint.activate([
             blurredHeaderViewBottomConstraint,
 
             poweredByLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            poweredByLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: .defaultSpacing / 2),
+            poweredByLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: .standardSpacing / 2),
 
             activityIndicatorLayoutGuide.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5),
         ])
@@ -88,16 +88,16 @@ public final class ShowSearchView: UIView {
         super.layoutSubviews()
 
         if traitCollection.verticalSizeClass == .regular {
-            blurredHeaderViewBottomConstraint.constant = .defaultSpacing * 1.5
+            blurredHeaderViewBottomConstraint.constant = .standardSpacing * 1.5
             poweredByLabelCollapsedHeightConstraint.isActive = false
         } else {
-            blurredHeaderViewBottomConstraint.constant = -.defaultSpacing / 2
+            blurredHeaderViewBottomConstraint.constant = -.standardSpacing / 2
             poweredByLabelCollapsedHeightConstraint.isActive = true
         }
 
         showCollectionView.additionalVerticalInset =
             poweredByLabel.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height +
-            blurredHeaderViewBottomConstraint.constant + .defaultSpacing / 2
+            blurredHeaderViewBottomConstraint.constant + .standardSpacing / 2
     }
 
     public func showBlurredHeader() {

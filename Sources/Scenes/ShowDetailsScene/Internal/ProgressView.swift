@@ -1,103 +1,97 @@
-//import UIKit
-//
-//final class ProgressView: UIView
-//{
-//    var spacing: CGFloat = .standardSpacing {
-//        didSet { contentStackView.spacing = spacing }
-//    }
-//
-//    var textStyle = UIFont.TextStyle.body {
-//        didSet {
-//            leadingLabel.setTextStyle(textStyle)
-//            trailingLabel.setTextStyle(textStyle)
-//        }
-//    }
-//
-//    var progressBarHeight: CGFloat = .standardSpacing {
-//        didSet { progressBarView.height = progressBarHeight }
-//    }
-//
-//    var hasLabels = true {
-//        didSet {
-//            leadingLabel.isHidden = !hasLabels
-//            trailingLabel.isHidden = !hasLabels
-//        }
-//    }
-//
-//    var leadingLabelText: String? {
-//        get { return leadingLabel.text }
-//        set { leadingLabel.text = newValue }
-//    }
-//
-//    var trailingLabelText: String? {
-//        get { return trailingLabel.text }
-//        set { trailingLabel.text = newValue }
-//    }
-//
-//    var progress: Float {
-//        get { return progressBarView.progress }
-//        set { progressBarView.progress = newValue }
-//    }
-//
-//    private lazy var contentStackView: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.axis = .vertical
-//        stackView.spacing = spacing
-//        return stackView
-//    }()
-//
-//    private lazy var labelsStackView: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.spacing = .standardSpacing
-//        return stackView
-//    }()
-//
-//    private lazy var leadingLabel: UILabel = {
-//        let label = UILabel()
-//        label.setTextStyle(textStyle)
-//        label.isHidden = !hasLabels
-//        return label
-//    }()
-//
-//    private lazy var trailingLabel: UILabel = {
-//        let label = UILabel()
-//        label.setTextStyle(textStyle)
-//        label.isHidden = !hasLabels
-//        label.setContentHuggingPriority(.required, for: .horizontal)
-//        return label
-//    }()
-//
-//    private lazy var progressBarView: ProgressBarView = {
-//        let progressBarView = ProgressBarView()
-//        progressBarView.height = progressBarHeight
-//        return progressBarView
-//    }()
-//
-//    convenience init() {
-//        self.init(frame: .zero)
-//
-//        addSubview(contentStackView)
-//        contentStackView.addArrangedSubview(labelsStackView)
-//        labelsStackView.addArrangedSubview(leadingLabel)
-//        labelsStackView.addArrangedSubview(trailingLabel)
-//        contentStackView.addArrangedSubview(progressBarView)
-//
-//        contentStackView.snap()
-//
-//        startListenForThemeChange()
-//    }
-//
-//    func setProgress(_ progress: Float, animated: Bool = false) {
-//        progressBarView.setProgress(progress, animated: animated)
-//    }
-//}
-//
-//extension ProgressView: ThemeChanging
-//{
-//    @objc
-//    func didChangeTheme() {
-//        leadingLabel.textColor = Theme.current.secondaryForegroundColor
-//        trailingLabel.textColor = Theme.current.secondaryForegroundColor
-//    }
-//}
+import UIKit
+import ConstraintLayout
+import ProgressBarView
+import Styling
+
+final class ProgressView: UIView {
+    var spacing: CGFloat = .standardSpacing {
+        didSet { updateUI() }
+    }
+
+    var progressBarHeight: CGFloat = .standardSpacing {
+        didSet { updateUI() }
+    }
+
+    var showLabels = true {
+        didSet { updateUI() }
+    }
+
+    var leadingLabelText: String? {
+        didSet { updateUI() }
+    }
+
+    var trailingLabelText: String? {
+        didSet { updateUI() }
+    }
+
+    var progress: Float = 0 {
+        didSet { updateUI() }
+    }
+
+    private lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        return stackView
+    }()
+
+    private lazy var labelsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = .standardSpacing
+        return stackView
+    }()
+
+    private lazy var leadingLabel = UILabel()
+
+    private lazy var trailingLabel: UILabel = {
+        let label = UILabel()
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        return label
+    }()
+
+    private lazy var progressBarView = ProgressBarView()
+
+    convenience init() {
+        self.init(frame: .zero)
+
+        addSubview(contentStackView)
+        contentStackView.addArrangedSubview(labelsStackView)
+        labelsStackView.addArrangedSubview(leadingLabel)
+        labelsStackView.addArrangedSubview(trailingLabel)
+        contentStackView.addArrangedSubview(progressBarView)
+
+        contentStackView.pin()
+
+        themeProvider.register(self)
+    }
+
+    func setProgress(_ progress: Float, animated: Bool = false) {
+        progressBarView.setProgress(progress, animated: animated)
+    }
+}
+
+extension ProgressView: Themeable {
+    func apply(theme: Theme) {
+        leadingLabel.textColor = theme.colors.foregroundSecondary
+        trailingLabel.textColor = theme.colors.foregroundSecondary
+    }
+
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        themeProvider.changeThemeAccording(traitCollection)
+    }
+}
+
+private extension ProgressView {
+    func updateUI() {
+        contentStackView.spacing = spacing
+        progressBarView.height = progressBarHeight
+
+        leadingLabel.isHidden = !showLabels
+        trailingLabel.isHidden = !showLabels
+
+        leadingLabel.text = leadingLabelText
+        trailingLabel.text = trailingLabelText
+
+        progressBarView.progress = progress
+    }
+}

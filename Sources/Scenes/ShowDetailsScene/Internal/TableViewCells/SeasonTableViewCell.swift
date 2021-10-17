@@ -1,11 +1,3 @@
-////
-////  SeasonTableViewCell.swift
-////  ShowTracker
-////
-////  Created by Roman Madyanov on 07/10/2018.
-////  Copyright © 2018 Roman Madyanov. All rights reserved.
-////
-//
 //import UIKit
 //
 //protocol SeasonTableViewCellDelegate: AnyObject

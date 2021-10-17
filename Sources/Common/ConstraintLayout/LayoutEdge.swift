@@ -34,9 +34,19 @@ public enum LayoutEdge {
 }
 
 extension Array where Element == LayoutEdge {
-    public static var all: [LayoutEdge] { .all(0) }
+    public static let all = Self.all(0)
+    public static let vertical = Self.vertical(0)
+    public static let horizontal = Self.horizontal(0)
 
     public static func all(_ inset: CGFloat) -> [LayoutEdge] {
         return [.top(inset), .bottom(inset), .left(inset), .right(inset)]
+    }
+
+    public static func vertical(_ inset: CGFloat) -> [LayoutEdge] {
+        return [.top(inset), .bottom(inset)]
+    }
+
+    public static func horizontal(_ inset: CGFloat) -> [LayoutEdge] {
+        return [.left(inset), .right(inset)]
     }
 }

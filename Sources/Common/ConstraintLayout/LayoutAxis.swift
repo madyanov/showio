@@ -18,7 +18,7 @@ public enum LayoutAxis {
 }
 
 extension Array where Element == LayoutAxis {
-    public static var all: [LayoutAxis] { .all(0) }
+    public static let all = Self.all(0)
 
     public static func all(_ offset: CGFloat) -> [LayoutAxis] {
         return [.x(offset), .y(offset)]

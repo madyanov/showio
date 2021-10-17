@@ -149,7 +149,3 @@ private extension HeaderView {
         closeButtonTapHandler?()
     }
 }
-
-private extension UILayoutPriority {
-    static let highest = UILayoutPriority(999)
-}

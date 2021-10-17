@@ -10,8 +10,8 @@ public enum Images: String {
     case eye
     case flag
     case logo
-    case nosign
     case plus
+    case squareSlash
     case star
 
     public var image: UIImage {

@@ -44,7 +44,7 @@ final class ShowCollectionViewCell: UICollectionViewCell {
     }()
 
     private lazy var posterPlaceholderImageView: UIImageView = {
-        let imageView = UIImageView(image: Images.nosign.image)
+        let imageView = UIImageView(image: Images.squareSlash.image)
         imageView.isHidden = true
         imageView.contentMode = .center
         imageView.layer.masksToBounds = true

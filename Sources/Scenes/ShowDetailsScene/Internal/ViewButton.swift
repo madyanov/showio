@@ -1,117 +1,109 @@
-////
-////  ViewButton.swift
-////  ShowTracker
-////
-////  Created by Roman Madyanov on 22.03.2020.
-////  Copyright © 2020 Roman Madyanov. All rights reserved.
-////
-//
-//import UIKit
-//import Toolkit
-//
-//protocol ViewButtonDelegate: AnyObject
-//{
-//    func didTapViewButton(in viewButton: ViewButton)
-//    func didTapUnseeButton(in viewButton: ViewButton)
-//}
-//
-//final class ViewButton: UIView
-//{
-//    weak var delegate: ViewButtonDelegate?
-//
-//    var size = CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
-//
-//    var isViewed: Bool? {
-//        didSet {
-//            let scaledTransform = CGAffineTransform.identity.scaledBy(x: 0.01, y: 0.01)
-//            viewButton.layer.removeAllAnimations()
-//            unseeButton.layer.removeAllAnimations()
-//
-//            UIView.animate(
-//                withDuration: 0.3,
-//                delay: 0,
-//                options: .allowUserInteraction,
-//                animations: {
-//                    if self.isViewed == true {
-//                        self.viewButton.alpha = 0
-//                        self.unseeButton.alpha = 1
-//                        self.viewButton.transform = scaledTransform
-//                        self.unseeButton.transform = .identity
-//                    } else if self.isViewed == false {
-//                        self.viewButton.alpha = 1
-//                        self.unseeButton.alpha = 0
-//                        self.viewButton.transform = .identity
-//                        self.unseeButton.transform = scaledTransform
-//                    } else {
-//                        self.viewButton.alpha = 0
-//                        self.unseeButton.alpha = 0
-//                        self.viewButton.transform = scaledTransform
-//                        self.unseeButton.transform = scaledTransform
-//                    }
-//                },
-//                completion: nil
-//            )
-//        }
-//    }
-//
-//    override var intrinsicContentSize: CGSize { size }
-//
-//    private lazy var viewButton: Button = {
-//        let button = Button()
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.alpha = 0
-//        button.highlightedAlpha = 0.5
-//        button.layer.borderWidth = 0.5
-//        button.layer.cornerRadius = .standardSpacing * 1.5
-//        button.setImage(UIImage(named: "eye-20"), for: .normal)
-//        button.addTarget(self, action: #selector(didTapViewButton), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    private lazy var unseeButton: Button = {
-//        let button = Button()
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.alpha = 0
-//        button.highlightedAlpha = 0.5
-//        button.setImage(UIImage(named: "check-20"), for: .normal)
-//        button.addTarget(self, action: #selector(didTapUnseeButton), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    convenience init() {
-//        self.init(frame: .zero)
-//
-//        addSubview(viewButton)
-//        addSubview(unseeButton)
-//
-//        startListenForThemeChange()
-//
-//        viewButton.snap()
-//        unseeButton.snap()
-//
-//        widthAnchor.constraint(equalTo: heightAnchor).isActive = true
-//    }
-//}
-//
-//extension ViewButton: ThemeChanging
-//{
-//    @objc
-//    func didChangeTheme() {
-//        unseeButton.tintColor = Theme.current.primaryBrandColor
-//        viewButton.tintColor = Theme.current.primaryBrandColor
-//        viewButton.layer.borderColor = Theme.current.primaryBrandColor.cgColor
-//    }
-//}
-//
-//extension ViewButton
-//{
-//    @objc
-//    private func didTapViewButton() {
-//        delegate?.didTapViewButton(in: self)
-//    }
-//
-//    @objc
-//    private func didTapUnseeButton() {
-//        delegate?.didTapUnseeButton(in: self)
-//    }
-//}
+import UIKit
+import HighlightingButton
+import Resources
+import Styling
+
+final class ViewButton: UIView {
+    enum State {
+        case hidden
+        case viewed(Bool)
+    }
+
+    var state: State = .hidden {
+        didSet {
+            let scaledTransform = CGAffineTransform.identity.scaledBy(x: 0.01, y: 0.01)
+            viewButton.layer.removeAllAnimations()
+            unseeButton.layer.removeAllAnimations()
+
+            UIView.animate(
+                withDuration: 0.3,
+                delay: 0,
+                options: .allowUserInteraction,
+                animations: {
+                    switch self.state {
+                    case .hidden:
+                        self.viewButton.alpha = 0
+                        self.unseeButton.alpha = 0
+                        self.viewButton.transform = scaledTransform
+                        self.unseeButton.transform = scaledTransform
+                    case .viewed(true):
+                        self.viewButton.alpha = 0
+                        self.unseeButton.alpha = 1
+                        self.viewButton.transform = scaledTransform
+                        self.unseeButton.transform = .identity
+                    case .viewed(false):
+                        self.viewButton.alpha = 1
+                        self.unseeButton.alpha = 0
+                        self.viewButton.transform = .identity
+                        self.unseeButton.transform = scaledTransform
+                    }
+                },
+                completion: nil
+            )
+        }
+    }
+
+    var tapHandler: ((State) -> Void)?
+    var size = CGSize(width: UIView.noIntrinsicMetric, height: UIView.noIntrinsicMetric)
+
+    override var intrinsicContentSize: CGSize { size }
+
+    private lazy var viewButton: HighlightingButton = {
+        let button = HighlightingButton()
+        button.alpha = 0
+        button.highlightedAlpha = 0.5
+        button.layer.borderWidth = 0.5
+        button.layer.cornerRadius = .standardSpacing * 1.5
+        button.setImage(Images.eye.image, for: .normal)
+        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var unseeButton: HighlightingButton = {
+        let button = HighlightingButton()
+        button.alpha = 0
+        button.highlightedAlpha = 0.5
+        button.setImage(Images.checkmark.image, for: .normal)
+        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+        return button
+    }()
+
+    init() {
+        super.init(frame: .zero)
+
+        addSubview(viewButton)
+        addSubview(unseeButton)
+
+        viewButton.pin()
+        unseeButton.pin()
+
+        widthAnchor.constraint(equalTo: heightAnchor).isActive = true
+
+        themeProvider.register(self)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension ViewButton: Themeable {
+    func apply(theme: Theme) {
+        unseeButton.tintColor = theme.colors.brandPrimary
+        viewButton.tintColor = theme.colors.brandPrimary
+        viewButton.layer.borderColor = theme.colors.brandPrimary.cgColor
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        themeProvider.changeThemeAccording(traitCollection)
+    }
+}
+
+extension ViewButton {
+    @objc
+    private func didTap() {
+        tapHandler?(state)
+    }
+}

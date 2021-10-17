@@ -137,7 +137,7 @@ extension HeaderView: Themeable {
         yearLabel.font = theme.fonts.body
     }
 
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         themeProvider.changeThemeAccording(traitCollection)
     }

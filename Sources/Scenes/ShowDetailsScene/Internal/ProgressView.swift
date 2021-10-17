@@ -50,8 +50,8 @@ final class ProgressView: UIView {
 
     private lazy var progressBarView = ProgressBarView()
 
-    convenience init() {
-        self.init(frame: .zero)
+    init() {
+        super.init(frame: .zero)
 
         addSubview(contentStackView)
         contentStackView.addArrangedSubview(labelsStackView)
@@ -62,6 +62,11 @@ final class ProgressView: UIView {
         contentStackView.pin()
 
         themeProvider.register(self)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func setProgress(_ progress: Float, animated: Bool = false) {
@@ -75,7 +80,7 @@ extension ProgressView: Themeable {
         trailingLabel.textColor = theme.colors.foregroundSecondary
     }
 
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         themeProvider.changeThemeAccording(traitCollection)
     }

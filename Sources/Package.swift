@@ -115,6 +115,7 @@ let package = Package(
                 "Localization",
                 "ConstraintLayout",
                 "RemoteImageView",
+                "GradientView",
                 "CollapsingTextView",
                 "HighlightingButton",
                 "Resources",

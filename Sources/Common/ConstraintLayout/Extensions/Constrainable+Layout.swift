@@ -1,36 +1,43 @@
 import UIKit
 
 extension Constrainable {
+    @discardableResult
     public func pin(edges: [LayoutEdge] = .all,
                     to view: Constrainable? = nil,
-                    priority: UILayoutPriority = .required) {
+                    priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
 
-        guard let view = view ?? `super` else { return }
+        guard let view = view ?? `super` else { return [] }
         prepareForLayout()
 
         let constraints = edges.map { $0.constraint(self, to: view) }
         NSLayoutConstraint.activate(constraints, priority: priority)
+
+        return constraints
     }
 
+    @discardableResult
     public func center(in view: Constrainable? = nil,
-                       offset: CGPoint = .zero,
-                       priority: UILayoutPriority = .required) {
+                       axes: [LayoutAxis] = .all,
+                       priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
 
-        guard let view = view ?? `super` else { return }
+        guard let view = view ?? `super` else { return [] }
         prepareForLayout()
 
-        NSLayoutConstraint.activate([
-            centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: offset.x),
-            centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: offset.y),
-        ], priority: priority)
+        let constraints = axes.map { $0.constraint(self, to: view) }
+        NSLayoutConstraint.activate(constraints, priority: priority)
+
+        return constraints
     }
 
-    public func size(_ size: CGSize, priority: UILayoutPriority = .required) {
+    @discardableResult
+    public func size(_ dimensions: [LayoutDimension],
+                     priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
+
         prepareForLayout()
 
-        NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalToConstant: size.width),
-            heightAnchor.constraint(equalToConstant: size.height),
-        ], priority: priority)
+        let constraints = dimensions.map { $0.constraint(self) }
+        NSLayoutConstraint.activate(constraints, priority: priority)
+
+        return constraints
     }
 }

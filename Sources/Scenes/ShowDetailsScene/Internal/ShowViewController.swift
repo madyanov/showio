@@ -1,11 +1,3 @@
-////
-////  ShowViewController.swift
-////  ShowTracker
-////
-////  Created by Roman Madyanov on 30/09/2018.
-////  Copyright © 2018 Roman Madyanov. All rights reserved.
-////
-//
 //import UIKit
 //import Toolkit
 //

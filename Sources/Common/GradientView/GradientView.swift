@@ -16,6 +16,11 @@ public class GradientView: UIView {
     }
 
     public override class var layerClass: AnyClass { CAGradientLayer.self }
+
+    public convenience init(colors: [UIColor]) {
+        self.init(frame: .zero)
+        self.colors = colors
+    }
 }
 
 private extension GradientView {

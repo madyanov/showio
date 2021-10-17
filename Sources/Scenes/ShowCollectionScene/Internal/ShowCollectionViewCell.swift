@@ -123,16 +123,12 @@ final class ShowCollectionViewCell: UICollectionViewCell {
         posterPlaceholderImageView.pin()
         dummyBlurredOverlay.pin()
         dummyActivityIndicatorView.center()
-
         progressBarView.pin(edges: [.leading, .trailing, .bottom])
+        numberOfNewEpisodesBadge.pin(edges: [.top(.standardSpacing), .trailing(.standardSpacing)],
+                                     to: posterImageView)
 
         NSLayoutConstraint.activate([
             posterImageView.heightAnchor.constraint(equalTo: posterImageView.widthAnchor, multiplier: 1.5),
-
-            numberOfNewEpisodesBadge.topAnchor.constraint(equalTo: posterImageView.topAnchor,
-                                                          constant: .standardSpacing),
-            numberOfNewEpisodesBadge.trailingAnchor.constraint(equalTo: posterImageView.trailingAnchor,
-                                                               constant: -.standardSpacing),
         ])
 
         updateUI()

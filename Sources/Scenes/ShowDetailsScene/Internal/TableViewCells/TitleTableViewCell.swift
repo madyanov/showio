@@ -27,10 +27,10 @@ final class TitleTableViewCell: UITableViewCell {
                                .bottom(.standardSpacing),
                                .right(.standardSpacing * 3)])
 
+        topLineView.pin(edges: [.leading(.standardSpacing * 3), .top])
+        topLineView.pin(edges: [.trailing], to: self)
+
         NSLayoutConstraint.activate([
-            topLineView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: .standardSpacing * 3),
-            topLineView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            topLineView.topAnchor.constraint(equalTo: contentView.topAnchor),
             topLineView.heightAnchor.constraint(equalToConstant: 0.5),
         ])
 

@@ -59,8 +59,9 @@ public final class ShowSearchView: UIView {
         showCollectionView.pin(edges: [.left, .right], to: safeArea)
         blurredHeaderView.pin(edges: [.top, .left, .right])
         activityIndicatorLayoutGuide.pin(edges: [.top, .left, .right])
-
         activityIndicatorView.center(in: activityIndicatorLayoutGuide, priority: .defaultLow)
+        poweredByLabel.center(axes: [.x])
+        poweredByLabel.pin(edges: [.top(.standardSpacing / 2)], to: safeArea)
 
         NSLayoutConstraint.activate([
             activityIndicatorView.topAnchor.constraint(greaterThanOrEqualTo: poweredByLabel.bottomAnchor,
@@ -69,10 +70,6 @@ public final class ShowSearchView: UIView {
 
         NSLayoutConstraint.activate([
             blurredHeaderViewBottomConstraint,
-
-            poweredByLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            poweredByLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: .standardSpacing / 2),
-
             activityIndicatorLayoutGuide.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5),
         ])
 

@@ -33,6 +33,7 @@ extension ShowViewModel: ShowCollectionScene.ShowViewModel {
     func delete() { }
 }
 
+// todo: move to some package
 private extension Date {
     var year: String { "\(Calendar.current.component(.year, from: self))" }
 }

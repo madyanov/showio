@@ -199,6 +199,7 @@ private extension InfoTableViewCell {
     }
 }
 
+// todo: move to some package
 private extension String {
     func truncated(length: Int, trailing: String = "…") -> String {
         return count > length ? prefix(length) + trailing : self

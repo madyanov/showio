@@ -28,7 +28,6 @@ public final class ShowSearchView: UIView {
                                        range: (string as NSString).range(of: "TheMovieDB"))
 
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.alpha = 0
         label.attributedText = attributedString
         label.isUserInteractionEnabled = true

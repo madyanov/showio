@@ -64,6 +64,7 @@ private extension ShowRepository {
     }
 }
 
+// todo: move to some package
 private extension String {
     func date(with format: String = "yyyy-MM-dd") -> Date? {
         let formatter = DateFormatter()

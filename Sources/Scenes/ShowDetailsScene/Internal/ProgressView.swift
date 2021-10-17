@@ -61,6 +61,7 @@ final class ProgressView: UIView {
 
         contentStackView.pin()
 
+        updateUI()
         themeProvider.register(self)
     }
 

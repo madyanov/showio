@@ -16,3 +16,9 @@ public enum LayoutDimension {
         }
     }
 }
+
+extension Array where Element == LayoutDimension {
+    public static func all(_ size: CGFloat) -> [LayoutDimension] {
+        return [.width(size), .height(size)]
+    }
+}

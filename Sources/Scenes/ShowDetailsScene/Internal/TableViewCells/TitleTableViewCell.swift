@@ -4,17 +4,11 @@ import Styling
 
 final class TitleTableViewCell: UITableViewCell {
     var title: String? {
-        get { titleLabel.text }
-        set { titleLabel.text = newValue }
+        didSet { updateUI() }
     }
 
     private lazy var titleLabel = UILabel()
-
-    private lazy var topLineView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var topLineView = UIView()
 
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -34,6 +28,7 @@ final class TitleTableViewCell: UITableViewCell {
             topLineView.heightAnchor.constraint(equalToConstant: 0.5),
         ])
 
+        updateUI()
         themeProvider.register(self)
     }
 
@@ -54,5 +49,11 @@ extension TitleTableViewCell: Themeable {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         themeProvider.changeThemeAccording(traitCollection)
+    }
+}
+
+private extension TitleTableViewCell {
+    func updateUI() {
+        titleLabel.text = title
     }
 }

@@ -40,4 +40,11 @@ extension Constrainable {
 
         return constraints
     }
+
+    @discardableResult
+    public func size(_ size: CGSize,
+                     priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
+
+        return self.size([.width(size.width), .height(size.height)], priority: priority)
+    }
 }

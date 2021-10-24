@@ -188,7 +188,7 @@ extension EpisodesCollectionView: UICollectionViewDelegateFlowLayout {
 
         if let size = cachedItemSize { return size }
 
-        configureCell(sizingEpisodeCollectionViewCell, at: indexPath)
+        sizingEpisodeCollectionViewCell.configure(with: .sizing)
 
         let size = sizingEpisodeCollectionViewCell.contentView.systemLayoutSizeFitting(
             CGSize(width: itemWidth, height: 1),
@@ -226,22 +226,17 @@ extension EpisodesCollectionView: UICollectionViewDataSource {
         let item = dataSource?.episodesCollectionView(self, itemAt: indexPath.item)
 
         switch item {
-        case .end(let state):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: endingCellReuseIdentifier,
-                                                                for: indexPath) as? EndingCollectionViewCell
-            else {
-                assertionFailure("Invalid cell type")
-                return UICollectionViewCell()
-            }
-
-            cell.state = state
+        case .end:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: endingCellReuseIdentifier,
+                                                          for: indexPath)
+            configureCell(cell, with: item)
             return cell
         case .episode:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: episodeCellReuseIdentifier,
                                                           for: indexPath)
-            configureCell(cell, at: indexPath)
+            configureCell(cell, with: item)
             return cell
-        default:
+        case .none:
             assertionFailure("Data source not set")
             return UICollectionViewCell()
         }
@@ -250,12 +245,21 @@ extension EpisodesCollectionView: UICollectionViewDataSource {
 
 private extension EpisodesCollectionView {
     func configureCell(_ cell: UICollectionViewCell, at indexPath: IndexPath) {
-        guard
-            let episodeCell = cell as? EpisodeCollectionViewCell,
-            case .episode(let episode) = dataSource?.episodesCollectionView(self, itemAt: indexPath.item)
-        else { return }
+        let item = dataSource?.episodesCollectionView(self, itemAt: indexPath.item)
+        configureCell(cell, with: item)
+    }
 
-        episodeCell.configure(with: episodeCell == sizingEpisodeCollectionViewCell ? .sizing : episode)
+    func configureCell(_ cell: UICollectionViewCell, with item: EpisodesCollectionViewItem?) {
+        switch item {
+        case .end(let state):
+            let cell = cell as? EndingCollectionViewCell
+            cell?.state = state
+        case .episode(let episode):
+            let cell = cell as? EpisodeCollectionViewCell
+            cell?.configure(with: episode)
+        case .none:
+            break
+        }
     }
 
     func updateScrollViewContentOffset() {

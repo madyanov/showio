@@ -1,9 +1,11 @@
+import ShowService
+
 final class ShowSearchRouter {
     private let urlRouter: ShowSearchURLRouter
-    private let showSelectHandler: (Int) -> Void
+    private let showSelectHandler: (Show.ID) -> Void
 
     init(urlRouter: ShowSearchURLRouter,
-         showSelectHandler: @escaping (Int) -> Void) {
+         showSelectHandler: @escaping (Show.ID) -> Void) {
 
         self.urlRouter = urlRouter
         self.showSelectHandler = showSelectHandler
@@ -11,7 +13,7 @@ final class ShowSearchRouter {
 }
 
 extension ShowSearchRouter: ShowRouter {
-    func selectShow(with id: Int) {
+    func selectShow(with id: Show.ID) {
         showSelectHandler(id)
     }
 

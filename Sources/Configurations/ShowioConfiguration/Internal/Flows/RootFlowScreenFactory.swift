@@ -2,6 +2,7 @@ import UIKit
 import ShowSearchScreen
 import ShowDetailsScreen
 import RootFlow
+import ShowService
 
 final class RootFlowScreenFactory {
     private let showSearchScreenConfigurator: ShowSearchScreenConfigurator
@@ -16,7 +17,7 @@ final class RootFlowScreenFactory {
 }
 
 extension RootFlowScreenFactory: RootFlow.RootFlowScreenFactory {
-    func makeShowSearchScreen(showSelectHandler: @escaping (Int) -> Void) -> UIViewController {
+    func makeShowSearchScreen(showSelectHandler: @escaping (Show.ID) -> Void) -> UIViewController {
         return showSearchScreenConfigurator.configure(showSelectHandler: showSelectHandler)
     }
 

@@ -1,4 +1,5 @@
 import UIKit
+import ShowService
 
 public final class ShowSearchScreenConfigurator {
     private let dependencies: ShowSearchScreenDependencies
@@ -7,7 +8,7 @@ public final class ShowSearchScreenConfigurator {
         self.dependencies = dependencies
     }
 
-    public func configure(showSelectHandler: @escaping (Int) -> Void) -> UIViewController {
+    public func configure(showSelectHandler: @escaping (Show.ID) -> Void) -> UIViewController {
         let router = ShowSearchRouter(urlRouter: dependencies.urlRouter.value,
                                       showSelectHandler: showSelectHandler)
         let dataSource = ShowSearchDataSource()

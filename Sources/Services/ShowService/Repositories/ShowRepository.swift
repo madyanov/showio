@@ -49,7 +49,7 @@ private extension ShowRepository {
     func show(from tv: TVResponse, configuration: ConfigurationResponse) -> Show? {
         guard let id = tv.id, let name = tv.name else { return nil }
 
-        return Show(id: id,
+        return Show(id: .id(id),
                     name: name,
                     firstAirDate: tv.firstAirDate?.date(),
                     posterURL: imageURL(for: tv.posterPath, size: .poster, configuration: configuration))

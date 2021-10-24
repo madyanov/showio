@@ -1,3 +1,5 @@
+import ShowService
+
 protocol ShowRouter {
-    func selectShow(with id: Int)
+    func selectShow(with id: Show.ID)
 }

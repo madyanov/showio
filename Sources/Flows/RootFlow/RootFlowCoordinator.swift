@@ -1,4 +1,5 @@
 import UIKit
+import ShowService
 
 public struct RootFlowCoordinator {
     public var rootViewController: UIViewController { navigationController }
@@ -20,7 +21,7 @@ public struct RootFlowCoordinator {
 }
 
 private extension RootFlowCoordinator {
-    func showDetails(id: Int) {
+    func showDetails(id: Show.ID) {
         let showDetailsViewController = featureFactory.makeShowDetailsScreen()
         navigationController.present(showDetailsViewController, animated: true)
     }

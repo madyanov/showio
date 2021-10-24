@@ -46,6 +46,7 @@ let package = Package(
         .library(name: "PropertyLists", targets: ["PropertyLists"]),
         .library(name: "URLRouter", targets: ["URLRouter"]),
         .library(name: "DI", targets: ["DI"]),
+        .library(name: "Generics", targets: ["Generics"]),
 
         // MARK: Executables
         .executable(name: "genstrings", targets: ["Genstrings"]),
@@ -62,6 +63,7 @@ let package = Package(
                 "URLRouter",
                 "Styling",
                 "API",
+                "ShowService",
                 "ShowSearchScreen",
                 "ShowDetailsScreen",
                 "RootFlow",
@@ -73,6 +75,7 @@ let package = Package(
         .target(name: "RootFlow",
                 dependencies: [
                     "DI",
+                    "ShowService",
                     "ShowDetailsTransition",
                 ],
                 path: "Flows/RootFlow"),
@@ -141,6 +144,7 @@ let package = Package(
             dependencies: [
                 "DI",
                 "Promises",
+                "Generics",
                 "API",
             ],
             path: "Services/ShowService"),
@@ -186,6 +190,7 @@ let package = Package(
         .target(name: "PropertyLists", path: "Common/PropertyLists"),
         .target(name: "URLRouter", path: "Common/URLRouter"),
         .target(name: "DI", path: "Common/DI"),
+        .target(name: "Generics", path: "Common/Generics"),
 
         // MARK: Executables
         .executableTarget(name: "Genstrings", path: "Executables/Genstrings"),

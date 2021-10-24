@@ -163,7 +163,7 @@ final class EpisodeCollectionViewCell: UICollectionViewCell {
     }
 
     // todo: move to presenter
-    func setEpisode(_ episode: Episode?) {
+    func configure(with episode: Episode?) {
         stillImageView.loadImage(with: episode?.stillURL,
                                  placeholderURL: episode?.showBackdropURL ?? episode?.showPosterURL)
 

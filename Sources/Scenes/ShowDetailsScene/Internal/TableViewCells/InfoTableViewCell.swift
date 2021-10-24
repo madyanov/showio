@@ -147,7 +147,7 @@ final class InfoTableViewCell: UITableViewCell {
     }
 
     // todo: move to presenter
-    func setShow(_ show: Show?) {
+    func configure(with show: Show?) {
         var ratingString: String?
         var episodeDurationString: String?
 

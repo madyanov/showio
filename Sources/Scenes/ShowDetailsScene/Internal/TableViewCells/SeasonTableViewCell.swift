@@ -37,7 +37,7 @@ final class SeasonTableViewCell: UITableViewCell {
     }
 
     // todo: move to presenter
-    func setSeason(_ season: Season?, animated: Bool = false) {
+    func configure(with season: Season?, animated: Bool = false) {
         viewButton.state = (season?.progress).map { .viewed($0 == 1) } ?? .hidden
 
         guard let season = season else {

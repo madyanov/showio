@@ -101,9 +101,9 @@ extension ViewButton: Themeable {
     }
 }
 
-extension ViewButton {
+private extension ViewButton {
     @objc
-    private func didTap() {
+    func didTap() {
         tapHandler?(state)
     }
 }

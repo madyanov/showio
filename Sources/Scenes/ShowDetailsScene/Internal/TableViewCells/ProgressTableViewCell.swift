@@ -29,7 +29,7 @@ final class ProgressTableViewCell: UITableViewCell {
     }
 
     // todo: move to presenter
-    func setShow(_ show: Show?, animated: Bool = false) {
+    func configure(with show: Show?, animated: Bool = false) {
         progressView.setProgress(show?.progress ?? 0, animated: animated)
         progressView.trailingLabelText = show.map { "\($0.numberOfViewedEpisodes)/\($0.numberOfEpisodes)" }
     }

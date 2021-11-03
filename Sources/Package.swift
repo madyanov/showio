@@ -10,43 +10,8 @@ let package = Package(
     ],
     // MARK: - Products
     products: [
-
         // MARK: Configurations
         .library(name: "ShowioConfiguration", targets: ["ShowioConfiguration"]),
-
-        // MARK: Flows
-        .library(name: "RootFlow", targets: ["RootFlow"]),
-
-        // MARK: Screens
-        .library(name: "ShowSearchScreen", targets: ["ShowSearchScreen"]),
-        .library(name: "ShowDetailsScreen", targets: ["ShowDetailsScreen"]),
-
-        // MARK: Scenes
-        .library(name: "ShowSearchScene", targets: ["ShowSearchScene"]),
-        .library(name: "ShowDetailsScene", targets: ["ShowDetailsScene"]),
-        .library(name: "ShowCollectionScene", targets: ["ShowCollectionScene"]),
-
-        // MARK: Services
-        .library(name: "ShowService", targets: ["ShowService"]),
-
-        // MARK: Shared
-        .library(name: "API", targets: ["API"]),
-        .library(name: "Resources", targets: ["Resources"]),
-        .library(name: "Styling", targets: ["Styling"]),
-        .library(name: "ProgressBarView", targets: ["ProgressBarView"]),
-        .library(name: "ShowDetailsTransition", targets: ["ShowDetailsTransition"]),
-
-        // MARK: Common
-        .library(name: "Promises", targets: ["Promises"]),
-        .library(name: "ConstraintLayout", targets: ["ConstraintLayout"]),
-        .library(name: "GradientView", targets: ["GradientView"]),
-        .library(name: "CollapsingTextView", targets: ["CollapsingTextView"]),
-        .library(name: "HighlightingButton", targets: ["HighlightingButton"]),
-        .library(name: "Localization", targets: ["Localization"]),
-        .library(name: "PropertyLists", targets: ["PropertyLists"]),
-        .library(name: "URLRouter", targets: ["URLRouter"]),
-        .library(name: "DI", targets: ["DI"]),
-        .library(name: "Generics", targets: ["Generics"]),
 
         // MARK: Executables
         .executable(name: "genstrings", targets: ["Genstrings"]),
